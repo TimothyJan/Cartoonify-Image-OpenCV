@@ -1,7 +1,7 @@
-import cv2 #for image processing
-import easygui #to open the filebox
-import numpy as np #to store image
-import imageio #to read image stored at particular path
+import cv2 # for image processing
+import easygui # to open the filebox
+import numpy as np # to store image
+import imageio # to read image stored at particular path
 
 import sys
 import matplotlib.pyplot as plt
@@ -22,16 +22,15 @@ def cartoonify(ImagePath):
     '''Convert image into a numpy array'''
     # imread stores images in the form of numbers. Image is read as numpy array
     originalmage = cv2.imread(ImagePath)
-    # Convert image from 
     originalmage = cv2.cvtColor(originalmage, cv2.COLOR_BGR2RGB)
     # print(originalmage)  # image is stored in form of numbers
 
-    # confirm that image is chosen
+    # Confirm that image is chosen
     if originalmage is None:
         print("Can not find any image. Choose appropriate file")
         sys.exit()
 
-    # resize to display all images on similar scale
+    # Resize to display all images on similar scale
     ReSized1 = cv2.resize(originalmage, (960, 540))
 
     # Display original image
@@ -45,7 +44,7 @@ def cartoonify(ImagePath):
     # Display grayscale image
     # plt.imshow(ReSized2, cmap='gray')
 
-    #applying median blur to smoothen an image
+    # Applying median blur to smoothen an image
     smoothGrayScale = cv2.medianBlur(grayScaleImage, 5)
     ReSized3 = cv2.resize(smoothGrayScale, (960, 540))
 
@@ -75,7 +74,7 @@ def cartoonify(ImagePath):
     ReSized6 = cv2.resize(cartoonImage, (960, 540))
 
     # Display cartoonified image
-    plt.imshow(ReSized6, cmap='gray')
+    # plt.imshow(ReSized6, cmap='gray')
 
     '''Plotting the whole transition'''
     images=[ReSized1, ReSized2, ReSized3, ReSized4, ReSized5, ReSized6]
@@ -93,7 +92,7 @@ def cartoonify(ImagePath):
     
     
 def save(ReSized6, ImagePath):
-    #saving an image using imwrite()
+    # Saving an image using imwrite()
     newName = "cartoonified_Image"
     path1 = os.path.dirname(ImagePath)
     extension=os.path.splitext(ImagePath)[1]
